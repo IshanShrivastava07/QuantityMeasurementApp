@@ -10,7 +10,7 @@ public enum LengthUnit {
 	LengthUnit(double conversionFactorToFeet) {
 		this.conversionFactorToFeet = conversionFactorToFeet;
 	}
-
+  
 	// Converts value in this unit to base unit
 	public double convertToBaseUnit(double value) {
 		if (!Double.isFinite(value))
