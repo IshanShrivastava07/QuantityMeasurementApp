@@ -1,7 +1,6 @@
-
 package com.apps.quantitymeasurement;
 
-public enum LengthUnit {
+public enum LengthUnit implements IMeasurable {
 	FEET(1.0), // base unit
 	INCHES(1.0 / 12.0), YARDS(3.0), CENTIMETERS(1.0 / 30.48);
 
@@ -10,7 +9,7 @@ public enum LengthUnit {
 	LengthUnit(double conversionFactorToFeet) {
 		this.conversionFactorToFeet = conversionFactorToFeet;
 	}
-  
+
 	// Converts value in this unit to base unit
 	public double convertToBaseUnit(double value) {
 		if (!Double.isFinite(value))
@@ -27,5 +26,10 @@ public enum LengthUnit {
 
 	public double getConversionFactor() {
 		return conversionFactorToFeet;
+	}
+
+	@Override
+	public String getUnitName() {
+		return name();
 	}
 }
