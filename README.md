@@ -1,100 +1,311 @@
-# QuantityMeasurementApp
----
-
-## 🧩 UC1 – Feet Equality
-
-- Implements value-based equality for feet measurements using an overridden `equals()` method.
-- Establishes object equality semantics as the foundation for future unit comparisons.
+# 🚀 Quantity Measurement Application  
+📏 *TDD • Clean Code • Scalable Architecture*
 
 ---
 
-## 🧩 UC2 – Inches Equality
-
-- Extends value-based equality comparison to inches measurements using a dedicated `Inches` class.
-- Maintains independent unit validation while reinforcing equality behaviour across measurement types.
-
----
-
-## 🧩 UC3 – Generic Length
-
-- Refactors unit-specific classes into a unified `Length` abstraction using a `LengthUnit` enum.
-- Eliminates duplicated logic using the **DRY principle** while enabling cross-unit equality comparison.
+## 🧠 Project Overview
+A scalable system to handle:
+- Unit Equality
+- Unit Conversion
+- Arithmetic Operations
+- Multi-category Measurements (Length, Weight, Volume, Temperature)
 
 ---
 
-## 🧩 UC4 – Extended Unit Support
-
-- Adds Yards and Centimeters to the `LengthUnit` enum with conversion factors.
-- Demonstrates scalability by enabling seamless cross-unit equality without introducing new classes.
+# 📚 Use Case Implementation (UC1 → UC21)
 
 ---
 
-## 🧩 UC5 – Unit-to-Unit Conversion
+## 📅 UC1 – Feet Equality
+**Branch:** feature/UC1-FeetEquality  
 
-- Introduces explicit conversion operations between supported length units.
-- Extends the Length API while preserving mathematical equivalence and precision.
+### 🎯 Objective
+- Validate equality between two Feet values
 
----
-
-## 🧩 UC6 – Length Addition Operation
-
-- Introduces addition between length measurements with automatic unit normalization.
-- Returns a new immutable `Length` result while preserving mathematical accuracy.
-
----
-
-## 🧩 UC7 – Addition with Target Unit Specification
-
-- Allows explicit specification of result units independent of operand units.
-- Enhances API flexibility while preserving immutability and precision.
+### ✅ Implementation
+- Created `Feet` class  
+- Implemented `equals()` method  
+- Added null & type safety  
+- Wrote JUnit tests  
 
 ---
 
-## 🧩 UC8 – Standalone Unit Refactor
+## 📅 UC2 – Feet & Inches Equality
+**Branch:** feature/UC2-InchEquality  
 
-- Extracts `LengthUnit` into a standalone enum responsible for all unit conversion logic.
-- Improves architectural separation by delegating conversions to units, reducing coupling and enabling scalable support for future measurement categories.
+### 🎯 Objective
+- Compare Feet and Inches  
+- Ensure `12 inches = 1 foot`
 
----
-
-## 🧩 UC9 – Weight Measurement Support
-
-- Introduces a weight measurement category with `Weight` and `WeightUnit` supporting kilograms, grams, and pounds.
-- Enables equality, conversion, and addition operations for weight while preserving strict separation from length measurements and stabilizing the shared measurement architecture.
-
----
-
-## 🧩 UC10 – Generic Quantity Architecture
-
-- Introduces a generic `Quantity<U extends IMeasurable>` model enabling multiple measurement categories through a shared abstraction.
-- Eliminates category-specific duplication by unifying equality, conversion, and addition logic into a single scalable architecture.
+### ✅ Implementation
+- Introduced conversion logic  
+- Base unit comparison  
+- Improved equality handling  
 
 ---
 
-## 🧩 UC11 – Volume Measurement Support
+## 📅 UC3 – Generic Quantity (DRY)
+**Branch:** feature/UC3-GenericLength  
 
-- Adds a new measurement category using `VolumeUnit` (Litre, Millilitre, Gallon) implemented through the generic `Quantity<U>` architecture.
-- Validates that new measurement types integrate without modifying existing quantity logic, proving true multi-category scalability.
+### 🎯 Objective
+- Remove duplication  
+- Create reusable Quantity class  
 
----
-
-## 🧩 UC12 – Subtraction and Division Operations
-
-- Introduces subtraction between quantities with automatic cross-unit normalization while preserving immutability.
-- Adds division support producing a dimensionless ratio, enabling comparative analysis across measurements of the same category.
-
----
-
-## 🧩 UC13 – Centralized Arithmetic Logic (DRY Refactor)
-
-- Refactors addition, subtraction, and division to use a centralized arithmetic helper, eliminating duplicated validation and conversion logic.
-- Improves maintainability and scalability while preserving all existing behaviour and public APIs.
+### ✅ Implementation
+- Centralized conversion  
+- Eliminated unit-specific logic  
+- Improved abstraction  
 
 ---
 
-## 🧩 UC14 – Temperature Measurement (Selective Arithmetic Support)
+## 📅 UC4 – Extend Units (Yard)
+**Branch:** feature/UC4-YardEquality  
 
-- Introduces temperature measurements using `TemperatureUnit` integrated into the generic `Quantity<U>` architecture with support for Celsius, Fahrenheit, and Kelvin conversions.
-- Applies capability-based validation to allow only supported operations, preventing invalid arithmetic while maintaining backward compatibility for existing measurement categories.
+### 🎯 Objective
+- Support more units  
+- Make system scalable  
+
+### ✅ Implementation
+- Added `Unit Enum`  
+- Base unit mapping  
+- Extensible structure  
+
+---
+
+## 📅 UC5 – Unit Conversion
+**Branch:** feature/UC5-UnitConversoion  
+
+### 🎯 Objective
+- Convert units (Feet ↔ Inch ↔ Yard)
+
+### ✅ Implementation
+- `convertTo()` method  
+- Centralized logic  
+- Precision-safe calculations  
+
+---
+
+## 📅 UC6 – Addition of Units
+**Branch:** feature/UC6-UnitAddition  
+
+### 🎯 Objective
+- Add two quantities  
+
+### ✅ Implementation
+- Convert → Add → Return  
+- Accurate arithmetic logic  
+
+---
+
+## 📅 UC7 – Target Unit Addition
+**Branch:** feature/UC7-TargetUnitAddition  
+
+### 🎯 Objective
+- Add values and return in specific unit  
+
+### ✅ Implementation
+- `add(quantity, targetUnit)`  
+- Conversion before return  
+
+---
+
+## 📅 UC8 – Standalone Unit Enum
+**Branch:** feature/UC8-StandaloneUnit  
+
+### 🎯 Objective
+- Improve modularity  
+
+### ✅ Implementation
+- Separated Unit enum  
+- Better design & flexibility  
+
+---
+
+## 📅 UC9 – Weight Measurement
+**Branch:** feature/UC9-WeightMeasurement  
+
+### 🎯 Objective
+- Add Weight category  
+
+### ✅ Implementation
+- Added Gram, Kilogram  
+- Category-safe comparison  
+- Prevented cross-category operations  
+
+---
+
+## 📅 UC10 – Generic Quantity (Multi-category)
+**Branch:** feature/UC10-GenericQuantity  
+
+### 🎯 Objective
+- Fully generic system  
+
+### ✅ Implementation
+- Created `Unit Interface`  
+- Generic class `<T extends Unit>`  
+- Type-safe operations  
+
+---
+
+## 📅 UC11 – Volume Measurement
+**Branch:** feature/UC11-VolumeMeasurement  
+
+### 🎯 Objective
+- Add Volume category  
+
+### ✅ Implementation
+- Added Litre, Millilitre  
+- Base unit: ml  
+- Conversion + addition  
+
+---
+
+## 📅 UC12 – Subtraction & Division
+**Branch:** feature/UC12-SubtractionAndDivision  
+
+### 🎯 Objective
+- Extend arithmetic operations  
+
+### ✅ Implementation
+- `subtract()`  
+- `divide()`  
+- Base unit logic  
+
+---
+
+## 📅 UC13 – Centralized Arithmetic Logic
+**Branch:** feature/UC13-CentralizedArithmeticLogic  
+
+### 🎯 Objective
+- Remove duplication  
+
+### ✅ Implementation
+- Common arithmetic handler  
+- DRY principle enforced  
+
+---
+
+## 📅 UC14 – Temperature Measurement
+**Branch:** feature/UC14-TemperatureMeasurementwithSelectiveArithmetic  
+
+### 🎯 Objective
+- Add Temperature  
+
+### ⚠ Special Logic
+```
+°F = (°C × 9/5) + 32
+```
+
+### ✅ Implementation
+- Formula-based conversion  
+- Restricted invalid arithmetic  
+- Domain-specific rules  
+
+---
+
+## 📅 UC15 – N-Tier Architecture
+**Branch:** feature/UC15-NTierArchitectureRefactor  
+
+### 🎯 Objective
+- Improve structure  
+
+### 🏗 Architecture
+```
+Controller → Service → Repository → DB
+```
+
+### ✅ Implementation
+- DTO layer  
+- Service layer  
+- Dependency Injection  
+
+![WhatsApp Image 2026-04-06 at 3 52 24 PM](https://github.com/user-attachments/assets/2e2d5e43-25f4-41d5-918f-20b577956c70)
+
+---
+
+## 📅 UC16 – JDBC Persistence
+**Branch:** feature/UC16-JDBCPersistence  
+
+### 🎯 Objective
+- Add database support  
+
+### 🗄 Tables
+```
+users
+measurements
+measurement_units
+```
+
+### ✅ Implementation
+- JDBC integration  
+- Prepared statements  
+- Connection pooling  
+
+---
+
+## 📅 UC17 – Spring Boot Backend
+**Branch:** feature/UC17-SpringBackend  
+
+### 🎯 Objective
+- Build REST APIs  
+
+### ✅ Implementation
+- Controllers  
+- Services  
+- JPA integration  
+
+---
+
+## 📅 UC18 – Google Auth + JWT
+**Branch:** feature/UC18-GoogleAuthUserManagement  
+
+### 🎯 Objective
+- Secure APIs  
+
+### 🔐 Flow
+```
+User → Google Login → JWT → API Access
+```
+
+### ✅ Implementation
+- OAuth2 login  
+- JWT token generation  
+- Role-based security  
+
+---
+
+## 📅 UC21 – Microservices Architecture
+**Branch:** feature/UC21-MicroservicesArchitecture  
+
+### 🎯 Objective
+- Convert monolith → microservices  
+
+### 🏗 Architecture
+```
+API Gateway
+   ↓
+Auth Service | Quantity Service | Admin Service
+   ↓
+Eureka Server
+```
+
+### ✅ Implementation
+- Service registry (Eureka)  
+- API Gateway  
+- JWT security  
+- Independent services  
+
+---
+
+<img width="800" height="400" alt="image" src="https://github.com/user-attachments/assets/f945ff65-83cb-4c31-abc4-39c7cd70ca3b" />
+
+
+# ✨ Highlights
+
+- 🧪 TDD Driven Development  
+- 🧱 Clean Architecture  
+- 🔐 Secure Authentication  
+- 🔄 Scalable Microservices  
+- 📦 Multi-domain Support  
 
 ---
